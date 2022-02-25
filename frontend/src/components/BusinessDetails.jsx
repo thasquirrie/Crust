@@ -29,6 +29,7 @@ const industryTypeOptions = [
 ];
 
 const BusinessDetails = ({ displayInConsole }) => {
+  const [formationDoc, setFormationDoc] = useState(false);
   const [nameOfCompany, setNameOfCompany] = useState('');
   const [industryType, setIndustryType] = useState('Hospitality');
   const [entityType, setEntityType] = useState('Sole Proprietorship');
@@ -47,6 +48,7 @@ const BusinessDetails = ({ displayInConsole }) => {
   const [lineOfCredit, setLineOfCredit] = useState('');
   const [annualRevenue, setAnnualRevenue] = useState('');
   const [avgMonthlyTurnover, setAvgMonthlyTurnonver] = useState('');
+  const [me, setMe] = useState('');
 
   const formData = {
     nameOfCompany,
@@ -67,6 +69,7 @@ const BusinessDetails = ({ displayInConsole }) => {
     lineOfCredit,
     annualRevenue,
     avgMonthlyTurnover,
+    me,
   };
   console.log(formData);
 
@@ -76,7 +79,9 @@ const BusinessDetails = ({ displayInConsole }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     localStorage.setItem('business-details', JSON.stringify(formData));
-    navigate('/formation-documents');
+    setFormationDoc(true);
+
+    // navigate('/formation-documents');
   };
 
   let business = localStorage.getItem('business-details')
@@ -84,6 +89,7 @@ const BusinessDetails = ({ displayInConsole }) => {
     : null;
 
   useEffect(() => {
+    console.log({ formationDoc });
     if (business) {
       setNameOfCompany(business.nameOfCompany);
       setIndustryType(business.industryType);
@@ -103,8 +109,9 @@ const BusinessDetails = ({ displayInConsole }) => {
       setLineOfCredit(business.lineOfCredit);
       setAnnualRevenue(business.annualRevenue);
       setAvgMonthlyTurnonver(business.avgMonthlyTurnover);
+      setMe(business.me);
     }
-  }, [business]);
+  }, [business, formationDoc]);
 
   return (
     <div className='space-y-6 sm:px-6 lg:px-0 lg:col-span-8'>
@@ -143,6 +150,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='company-name'
                   value={nameOfCompany}
                   onChange={(e) => setNameOfCompany(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -160,6 +168,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='industry-type'
                   value={industryType}
                   onChange={(e) => setIndustryType(e.target.value)}
+                  required
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   {industryTypeOptions.map((opt) => (
@@ -183,6 +192,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='entity-type'
                   value={entityType}
                   onChange={(e) => setEntityType(e.target.value)}
+                  required
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option value='Sole Proprietorship'>
@@ -211,6 +221,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='business-number'
                   value={rcNumber}
                   onChange={(e) => setRCNumber(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -229,6 +240,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='tin-number'
                   value={tin}
                   onChange={(e) => setTin(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -247,6 +259,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='phone-number'
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -264,6 +277,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='country'
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
+                  required
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option className='bg-gray-300 py-2' value='Nigeria'>
@@ -288,6 +302,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -330,6 +345,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                     rows={3}
                     value={businessDetails}
                     onChange={(e) => setBusinessDetails(e.target.value)}
+                    required
                     className='shadow-sm focus:ring-slate-500 focus:border-slate-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md'
                   />
                 </div>
@@ -352,6 +368,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='address'
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -370,33 +387,31 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='address-level2'
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
+                  required
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
+                />
+              </div>
+
+              <div className='col-span-6 sm:col-span-3'>
+                <label
+                  htmlFor='state-region'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  <span className='text-red-500 text-base'>*</span> State
+                </label>
+                <input
+                  type='text'
+                  name='state-region'
+                  id='state-region'
+                  autoComplete='address-level2'
+                  value={region}
+                  onChange={(e) => setRegionalState(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
               {/* <div className='col-span-6 sm:col-span-3'>
-                <label
-                  htmlFor='region'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  <span className='text-red-500 text-base'>*</span> State /
-                  Region
-                </label>
-                <input
-                  type='text'
-                  name='region'
-                  id='region'
-                  autoComplete='region'
-                  value={region}
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                    setRegionalState(e.target.value);
-                  }}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
-                />
-              </div> */}
-
-              <div className='col-span-6 sm:col-span-3'>
                 <label
                   htmlFor='city'
                   className='block text-sm font-medium text-gray-700'
@@ -408,12 +423,13 @@ const BusinessDetails = ({ displayInConsole }) => {
                   type='text'
                   name='region'
                   id='region'
-                  autoComplete='region'
+                  // autoComplete='region'
                   value={region}
                   onChange={(e) => setRegionalState(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
-              </div>
+              </div> */}
 
               <div className='col-span-6 sm:col-span-3'>
                 <label
@@ -428,6 +444,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='company-size'
                   value={companySize}
                   onChange={(e) => setCompanySize(e.target.value)}
+                  required
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option value='under 10 employees'>Under 10 employees</option>
@@ -450,6 +467,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='customer-type'
                   value={typeOfCustomers}
                   onChange={(e) => setTypeOfCustomers(e.target.value)}
+                  required
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option value='Large companies'>Large companies</option>
@@ -507,6 +525,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='revenue'
                   value={annualRevenue}
                   onChange={(e) => setAnnualRevenue(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
@@ -531,6 +550,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='turnover'
                   value={avgMonthlyTurnover}
                   onChange={(e) => setAvgMonthlyTurnonver(e.target.value)}
+                  required
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>

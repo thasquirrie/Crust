@@ -11,7 +11,7 @@ export default function SignupScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const userSignup = useSelector((state) => state.userSignup);
-  const { loading, success, user } = userSignup;
+  const { loading, success, userInfo } = userSignup;
 
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ export default function SignupScreen() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (userInfo) {
       navigate('/');
     }
   });
