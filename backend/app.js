@@ -9,10 +9,9 @@ const app = express();
 
 const cookieParser = require('cookie-parser');
 
+const formRouter = require('./routes/formRoutes');
 const userRouter = require('./routes/userRoutes');
 const uploadRouter = require('./routes/uploadRoutes');
-
-
 
 app.use(express.json());
 app.use(cors());
@@ -28,9 +27,9 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use('/api/v1/forms', formRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/uploads', uploadRouter);
-
 
 if (process.env.NODE_ENV === 'production') {
   console.log(__dirname);

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const industryTypeOptions = [
   'Hospitality',
@@ -27,7 +28,84 @@ const industryTypeOptions = [
   'Others',
 ];
 
-const BusinessDetails = ({ submitHandler }) => {
+const BusinessDetails = ({ displayInConsole }) => {
+  const [nameOfCompany, setNameOfCompany] = useState('');
+  const [industryType, setIndustryType] = useState('Hospitality');
+  const [entityType, setEntityType] = useState('Sole Proprietorship');
+  const [rcNumber, setRCNumber] = useState('');
+  const [tin, setTin] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('Nigeria');
+  const [email, setEmail] = useState('');
+  const [website, setWebsite] = useState('');
+  const [businessDetails, setBusinessDetails] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [region, setRegionalState] = useState('');
+  const [companySize, setCompanySize] = useState('Under 10 employees');
+  const [typeOfCustomers, setTypeOfCustomers] = useState('Large companies');
+  const [lineOfCredit, setLineOfCredit] = useState('');
+  const [annualRevenue, setAnnualRevenue] = useState('');
+  const [avgMonthlyTurnover, setAvgMonthlyTurnonver] = useState('');
+
+  const formData = {
+    nameOfCompany,
+    industryType,
+    entityType,
+    rcNumber,
+    tin,
+    phone,
+    country,
+    email,
+    website,
+    businessDetails,
+    address,
+    city,
+    region,
+    companySize,
+    typeOfCustomers,
+    lineOfCredit,
+    annualRevenue,
+    avgMonthlyTurnover,
+  };
+  console.log(formData);
+
+  displayInConsole(formData);
+  const navigate = useNavigate();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    localStorage.setItem('business-details', JSON.stringify(formData));
+    navigate('/formation-documents');
+  };
+
+  let business = localStorage.getItem('business-details')
+    ? JSON.parse(localStorage.getItem('business-details'))
+    : null;
+
+  useEffect(() => {
+    if (business) {
+      setNameOfCompany(business.nameOfCompany);
+      setIndustryType(business.industryType);
+      setEntityType(business.entityType);
+      setRCNumber(business.rcNumber);
+      setTin(business.tin);
+      setPhone(business.phone);
+      setCountry(business.country);
+      setEmail(business.email);
+      setWebsite(business.website);
+      setBusinessDetails(business.businessDetails);
+      setAddress(business.address);
+      setCity(business.city);
+      setRegionalState(business.region);
+      setCompanySize(business.companySize);
+      setTypeOfCustomers(business.typeOfCustomers);
+      setLineOfCredit(business.lineOfCredit);
+      setAnnualRevenue(business.annualRevenue);
+      setAvgMonthlyTurnonver(business.avgMonthlyTurnover);
+    }
+  }, [business]);
+
   return (
     <div className='space-y-6 sm:px-6 lg:px-0 lg:col-span-8'>
       <form onSubmit={submitHandler}>
@@ -63,6 +141,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='company-name'
                   id='company-name'
                   autoComplete='company-name'
+                  value={nameOfCompany}
+                  onChange={(e) => setNameOfCompany(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -78,6 +158,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   id='industry-type'
                   name='industry-type'
                   autoComplete='industry-type'
+                  value={industryType}
+                  onChange={(e) => setIndustryType(e.target.value)}
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 >
                   {industryTypeOptions.map((opt) => (
@@ -99,6 +181,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   id='entity-type'
                   name='entity-type'
                   autoComplete='entity-type'
+                  value={entityType}
+                  onChange={(e) => setEntityType(e.target.value)}
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 >
                   <option value='Sole Proprietorship'>
@@ -125,6 +209,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='business-number'
                   id='business-number'
                   autoComplete='business-number'
+                  value={rcNumber}
+                  onChange={(e) => setRCNumber(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -141,6 +227,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='tin-number'
                   id='tin-number'
                   autoComplete='tin-number'
+                  value={tin}
+                  onChange={(e) => setTin(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -157,6 +245,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='phone-number'
                   id='phone-number'
                   autoComplete='phone-number'
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -172,6 +262,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   id='country'
                   name='country'
                   autoComplete='country'
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 >
                   <option className='bg-gray-300 py-2' value='Nigeria'>
@@ -194,6 +286,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='email'
                   id='email'
                   autoComplete='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -214,6 +308,8 @@ const BusinessDetails = ({ submitHandler }) => {
                     name='website'
                     id='website'
                     autoComplete='website'
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
                     className='focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300'
                   />
                 </div>
@@ -232,6 +328,8 @@ const BusinessDetails = ({ submitHandler }) => {
                     id='about'
                     name='about'
                     rows={3}
+                    value={businessDetails}
+                    onChange={(e) => setBusinessDetails(e.target.value)}
                     className='shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md'
                   />
                 </div>
@@ -252,6 +350,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='address'
                   id='address'
                   autoComplete='address'
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -268,11 +368,13 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='city'
                   id='city'
                   autoComplete='address-level2'
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
 
-              <div className='col-span-6 sm:col-span-3'>
+              {/* <div className='col-span-6 sm:col-span-3'>
                 <label
                   htmlFor='region'
                   className='block text-sm font-medium text-gray-700'
@@ -284,7 +386,31 @@ const BusinessDetails = ({ submitHandler }) => {
                   type='text'
                   name='region'
                   id='region'
-                  autoComplete='address-level1'
+                  autoComplete='region'
+                  value={region}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setRegionalState(e.target.value);
+                  }}
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                />
+              </div> */}
+
+              <div className='col-span-6 sm:col-span-3'>
+                <label
+                  htmlFor='city'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  <span className='text-red-500 text-base'>*</span> State /
+                  Region
+                </label>
+                <input
+                  type='text'
+                  name='region'
+                  id='region'
+                  autoComplete='region'
+                  value={region}
+                  onChange={(e) => setRegionalState(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -300,6 +426,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   id='company-size'
                   name='company-size'
                   autoComplete='company-size'
+                  value={companySize}
+                  onChange={(e) => setCompanySize(e.target.value)}
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 >
                   <option value='under 10 employees'>Under 10 employees</option>
@@ -320,6 +448,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   id='customer-type'
                   name='customer-type'
                   autoComplete='customer-type'
+                  value={typeOfCustomers}
+                  onChange={(e) => setTypeOfCustomers(e.target.value)}
                   className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 >
                   <option value='Large companies'>Large companies</option>
@@ -351,6 +481,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='credit'
                   id='credit'
                   autoComplete='credit'
+                  value={lineOfCredit}
+                  onChange={(e) => setLineOfCredit(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -373,6 +505,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='revenue'
                   id='revenue'
                   autoComplete='revenue'
+                  value={annualRevenue}
+                  onChange={(e) => setAnnualRevenue(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>
@@ -395,6 +529,8 @@ const BusinessDetails = ({ submitHandler }) => {
                   name='turnover'
                   id='turnover'
                   autoComplete='turnover'
+                  value={avgMonthlyTurnover}
+                  onChange={(e) => setAvgMonthlyTurnonver(e.target.value)}
                   className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                 />
               </div>

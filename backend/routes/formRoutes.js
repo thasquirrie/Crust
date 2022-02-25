@@ -10,11 +10,20 @@ router
     authController.protect,
     authController.restrictTo('admin'),
     formController.getAllForms
-  ).post(authController.protect, formController.createForm);
+  )
+  .post(
+    authController.protect,
+    formController.uploads,
+    formController.createForm
+  );
 
 router
   .route('/:id')
   .get(authController.protect, formController.getForm)
-  .patch(authController.protect, formController.editForm);
+  .patch(
+    authController.protect,
+    formController.uploads,
+    formController.editForm
+  );
 
 module.exports = router;

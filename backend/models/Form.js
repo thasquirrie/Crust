@@ -21,7 +21,7 @@ const formSchema = mongoose.Schema({
     type: String,
     required: [true, 'Business Number is required'],
   },
-  tinNumber: {
+  tin: {
     type: String,
     required: [true, 'TIN is needed'],
   },
@@ -52,7 +52,7 @@ const formSchema = mongoose.Schema({
     type: String,
     required: [true, 'City is required'],
   },
-  state: {
+  region: {
     type: String,
     required: [true, 'State is required'],
   },
@@ -89,7 +89,7 @@ const formSchema = mongoose.Schema({
   },
 });
 
-businessDetailsSchema.pre(/^find/, function (next) {
+formSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'user',
     select: 'email, firstName, lastName',
