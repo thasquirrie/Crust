@@ -15,10 +15,12 @@
   ```
 */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {} from '@heroicons/react/outline';
 import BusinessDetails from '../components/BusinessDetails';
 import Sidebar from '../components/Sidebar';
+import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router';
 
 const navigation = [
   { name: 'Business Details', href: '#', current: true },
@@ -37,8 +39,10 @@ const navigation = [
 // }
 
 export default function BusinessDetailsScreen() {
-  // const [memart, setMemart] = useState('');
-  // const [formationDoc, setFormationDoc] = useState(false);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const navigate = useNavigate();
 
   let formData;
 
@@ -59,6 +63,12 @@ export default function BusinessDetailsScreen() {
   //   // console.log('Form:', data);
   //   // localStorage.setItem('business-details', JSON.stringify(data));
   // };
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/signup');
+    }
+  }, [navigate, userInfo]);
 
   return (
     <div className='max-w-[22rem] -mt-24 bg-slate-300 md:max-w-7xl mx-auto rounded-lg'>

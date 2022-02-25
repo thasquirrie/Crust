@@ -53,7 +53,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordChangedAt,
   };
 
-  if ((firstName || lastName, email, password, confirmPassword))
+  if (!firstName || !lastName || !email || !password || !confirmPassword)
     return next(new AppError('All fields are required to sign up', 400));
 
   const newUser = await User.create(details);

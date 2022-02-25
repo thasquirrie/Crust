@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ORDER_LIST_RESET } from '../constants/orderConstants';
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -80,12 +79,12 @@ export const logout = () => (dispatch) => {
     type: USER_LOGOUT,
   });
   dispatch({ type: USER_DETAILS_RESET });
-  dispatch({ type: ORDER_LIST_RESET });
   dispatch({ type: USER_LIST_RESET });
   console.log('Logged out successfully!');
 };
 
 export const signup = (data) => async (dispatch) => {
+  console.log({ data });
   try {
     dispatch({
       type: USER_SIGNUP_REQUEST,

@@ -143,7 +143,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='company-name'
                   value={nameOfCompany}
                   onChange={(e) => setNameOfCompany(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -160,7 +160,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='industry-type'
                   value={industryType}
                   onChange={(e) => setIndustryType(e.target.value)}
-                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   {industryTypeOptions.map((opt) => (
                     <option key={opt} value={opt}>
@@ -183,7 +183,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='entity-type'
                   value={entityType}
                   onChange={(e) => setEntityType(e.target.value)}
-                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option value='Sole Proprietorship'>
                     Sole Proprietorshp
@@ -211,7 +211,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='business-number'
                   value={rcNumber}
                   onChange={(e) => setRCNumber(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -229,7 +229,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='tin-number'
                   value={tin}
                   onChange={(e) => setTin(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -247,7 +247,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='phone-number'
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -264,7 +264,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='country'
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option className='bg-gray-300 py-2' value='Nigeria'>
                     Nigeria
@@ -288,7 +288,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -310,7 +310,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                     autoComplete='website'
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
-                    className='focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300'
+                    className='focus:ring-slate-500 focus:border-slate-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300'
                   />
                 </div>
               </div>
@@ -330,7 +330,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                     rows={3}
                     value={businessDetails}
                     onChange={(e) => setBusinessDetails(e.target.value)}
-                    className='shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md'
+                    className='shadow-sm focus:ring-slate-500 focus:border-slate-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md'
                   />
                 </div>
                 <p className='mt-2 text-sm text-gray-500'>
@@ -352,7 +352,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='address'
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -370,7 +370,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='address-level2'
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -392,7 +392,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                     console.log(e.target.value);
                     setRegionalState(e.target.value);
                   }}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div> */}
 
@@ -411,7 +411,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='region'
                   value={region}
                   onChange={(e) => setRegionalState(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -428,7 +428,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='company-size'
                   value={companySize}
                   onChange={(e) => setCompanySize(e.target.value)}
-                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option value='under 10 employees'>Under 10 employees</option>
                   <option value='10-50 employees'>10-50 employees</option>
@@ -450,7 +450,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='customer-type'
                   value={typeOfCustomers}
                   onChange={(e) => setTypeOfCustomers(e.target.value)}
-                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 >
                   <option value='Large companies'>Large companies</option>
                   <option value='Small companies'>Small companies</option>
@@ -483,7 +483,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='credit'
                   value={lineOfCredit}
                   onChange={(e) => setLineOfCredit(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -507,7 +507,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='revenue'
                   value={annualRevenue}
                   onChange={(e) => setAnnualRevenue(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
 
@@ -531,7 +531,7 @@ const BusinessDetails = ({ displayInConsole }) => {
                   autoComplete='turnover'
                   value={avgMonthlyTurnover}
                   onChange={(e) => setAvgMonthlyTurnonver(e.target.value)}
-                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
                 />
               </div>
             </div>

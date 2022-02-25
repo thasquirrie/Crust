@@ -327,7 +327,7 @@ const Header = () => {
                         <span className='sr-only'>Open user menu</span>
                         <img
                           className='h-8 w-8 rounded-full'
-                          src={user.imageUrl}
+                          src={'/default.jpg'}
                           alt=''
                         />
                       </Menu.Button>
