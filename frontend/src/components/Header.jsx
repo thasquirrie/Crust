@@ -444,10 +444,11 @@ const Header = () => {
                           </div>
                           <div className='ml-3 min-w-0 flex-1'>
                             <div className='text-base font-medium text-gray-800 truncate'>
-                              {userInfo.user.firstName} {userInfo.user.lastName}
+                              {userInfo && userInfo.user.firstName}{' '}
+                              {userInfo && userInfo.user.lastName}
                             </div>
                             <div className='text-sm font-medium text-gray-500 truncate'>
-                              {userInfo.user.email}
+                              {userInfo && userInfo.user.email}
                             </div>
                           </div>
                           <button
