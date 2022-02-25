@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { signup } from '../actions/userActions';
+import { login } from '../actions/userActions';
 
 export default function LoginScreen() {
   const [firstName, setFirstName] = useState('');
@@ -18,7 +18,7 @@ export default function LoginScreen() {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log({ email, password });
-    dispatch(signup({ email, password }));
+    dispatch(login({ email, password }));
   };
 
   const navigate = useNavigate();

@@ -26,7 +26,7 @@ import {
   USER_UPDATEDETAILS_FAIL,
 } from '../constants/userConstants';
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (data) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
 
@@ -43,7 +43,7 @@ export const login = (email, password) => async (dispatch) => {
     } = await axios({
       method: 'POST',
       url: '/api/v1/users/login',
-      data: { email, password },
+      data,
       config,
     });
 
