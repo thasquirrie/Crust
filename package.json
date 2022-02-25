@@ -1,0 +1,41 @@
+{
+  "name": "crust",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Sodiq Farayola",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.8.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "start:local": "nodemon backend/server.js",
+    "start:prod": "SET NODE_ENV=production&& nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "start:dev": "concurrently \"npm run start\" \"npm run client\"",
+    "start:dev-local": "concurrently \"npm run start:local\" \"npm run client\"",
+    "start:production": "concurrently \"npm run start:prod\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend npx tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --prefix frontend"
+  },
+  "dependencies": {
+    "@themesberg/tailwind-datepicker": "^1.1.0",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "react-datepicker": "^4.6.0",
+    "sharp": "^0.30.1",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
