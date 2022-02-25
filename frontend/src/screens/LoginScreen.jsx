@@ -49,7 +49,7 @@ export default function LoginScreen() {
                   href='/login'
                   className=' underline block mt-2 font-medium text-slate-600 hover:text-slate-500'
                 >
-                  Login to your account if you are a registered user
+                  Sign up for an account if you are a new user
                 </a>
               </p>
             </div>
