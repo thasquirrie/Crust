@@ -19,7 +19,11 @@ const navigation = [
     href: '#',
     current: JSON.parse(localStorage.getItem('formationDoc')),
   },
-  { name: 'Link Bank Details', href: '', current: false },
+  {
+    name: 'Link Bank Details',
+    href: '',
+    current: JSON.parse(localStorage.getItem('linkBank')),
+  },
   { name: 'Review and Submit', href: '#', current: false },
 ];
 

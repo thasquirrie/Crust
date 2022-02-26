@@ -80,8 +80,10 @@ const BusinessDetails = ({ displayInConsole }) => {
     e.preventDefault();
     localStorage.setItem('business-details', JSON.stringify(formData));
     setFormationDoc(true);
-
-    // navigate('/formation-documents');
+    localStorage.setItem('formationDoc', JSON.stringify(formationDoc));
+    window.setTimeout(() => {
+      navigate('/formation-documents');
+    }, 3000);
   };
 
   let business = localStorage.getItem('business-details')
