@@ -2,16 +2,22 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { login } from '../actions/userActions';
+import ErrorALert from '../components/ErrorAlert';
+import SuccessAlert from '../components/SuccessAlert';
 
 export default function LoginScreen() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [successShow, setSuccessShow] = useState(false);
+  const [errorShow, setErrorShow] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, success, userInfo } = userLogin;
+  const {
+    loading,
+    success: loginSuccess,
+    error: loginError,
+    userInfo,
+  } = userLogin;
 
   const dispatch = useDispatch();
 
@@ -25,9 +31,24 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/');
+      console.log({ userInfo });
+      window.setTimeout(() => {
+        navigate('/');
+      }, 3000);
     }
-  });
+
+    if (loginSuccess) {
+      setSuccessShow(true);
+
+      window.setTimeout(() => setSuccessShow(false), 2500);
+    }
+
+    if (loginError) {
+      setErrorShow(true);
+
+      window.setTimeout(() => setErrorShow(false), 2500);
+    }
+  }, [navigate, loginError, loginSuccess, userInfo]);
 
   return (
     <>
@@ -35,18 +56,15 @@ export default function LoginScreen() {
         <div className='flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 z-10 bg-white'>
           <div className='mx-auto w-full max-w-sm lg:w-96'>
             <div>
-              {/* <img
-                className='h-12 w-auto'
-                src='https://tailwindui.com/img/logos/workflow-mark-slate-600.svg'
-                alt='Workflow'
-              /> */}
+              {successShow && <SuccessAlert action={'Login'} />}
+              {errorShow && <ErrorALert error={loginError} />}
               <h2 className='mt-6 text-3xl font-extrabold text-gray-900'>
                 Sign in to your account
               </h2>
               <p className='mt-4 text-base text-gray-600 text-center'>
                 Or{' '}
                 <a
-                  href='/login'
+                  href='/signup'
                   className=' underline block mt-2 font-medium text-slate-600 hover:text-slate-500'
                 >
                   Sign up for an account if you are a new user

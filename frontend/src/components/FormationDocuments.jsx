@@ -1,16 +1,41 @@
 import { ClipboardIcon, XIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { createForm } from '../actions/formActions';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
 
 const FormationDocuments = ({ formationDoc }) => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login');
+    }
+  }, [userInfo, navigate]);
+
   const [certificateOfIncoporation, setCertificateOfIncoporation] =
     useState('');
   const [cac, setCac] = useState('');
   const [memart, setMemart] = useState('');
   const [linkBank, setLinkBank] = useState(false);
+
+  const formationDocDetails = localStorage.getItem('formationDocDetails')
+    ? JSON.parse(localStorage.getItem('formationDocDetails'))
+    : null;
+
+  const businessDetails = localStorage.getItem('business-details')
+    ? JSON.parse(localStorage.getItem('business-details'))
+    : null;
+
+  console.log({ formationDocDetails, businessDetails });
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -21,11 +46,8 @@ const FormationDocuments = ({ formationDoc }) => {
     );
     setLinkBank(true);
     localStorage.setItem('linkBank', JSON.stringify(linkBank));
+    dispatch(createForm({ ...formationDocDetails, ...businessDetails }));
   };
-
-  const formationDocDetails = localStorage.getItem('formationDocDetails')
-    ? JSON.parse(localStorage.getItem('formationDocDetails'))
-    : null;
 
   useEffect(() => {
     console.log(linkBank);

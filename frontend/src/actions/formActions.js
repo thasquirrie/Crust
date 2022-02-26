@@ -6,6 +6,7 @@ import {
 } from '../constants/formConstants';
 
 export const createForm = (data) => async (dispatch, getState) => {
+  console.log({ data });
   try {
     dispatch({ type: CREATE_FORM_REQUEST });
 
@@ -19,7 +20,9 @@ export const createForm = (data) => async (dispatch, getState) => {
     };
 
     const {
-      data: { form },
+      data: {
+        data: { form },
+      },
     } = await axios({
       method: 'POST',
       url: `/api/v1/forms`,

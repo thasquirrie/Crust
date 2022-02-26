@@ -51,6 +51,7 @@ export const userSignupReducer = (state = {}, action) => {
     case USER_SIGNUP_SUCCESS:
       return { loading: false, success: true, userInfo: action.payload };
     case USER_SIGNUP_FAIL:
+      console.log(action.payload);
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -24,7 +24,11 @@ const navigation = [
     href: '',
     current: JSON.parse(localStorage.getItem('linkBank')),
   },
-  { name: 'Review and Submit', href: '#', current: false },
+  {
+    name: 'Review and Submit',
+    href: '#',
+    current: JSON.parse(localStorage.getItem('review-and-submit')),
+  },
 ];
 
 function classNames(...classes) {

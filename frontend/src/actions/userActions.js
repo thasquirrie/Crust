@@ -108,27 +108,28 @@ export const signup = (data) => async (dispatch) => {
       config,
     });
 
-    // const { user, token } = data.data;
-    // console.log(data);
-    // console.log('token:', token);
+    console.log({ user });
 
     dispatch({
       type: USER_SIGNUP_SUCCESS,
       payload: { user, token },
     });
 
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: { user, token },
-    });
+    // dispatch({
+    //   type: USER_LOGIN_SUCCESS,
+    //   payload: { user, token },
+    // });
 
     localStorage.setItem('userInfo', JSON.stringify({ user, token }));
   } catch (error) {
+    console.log({ error });
     dispatch({
       type: USER_SIGNUP_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
+          : error
+          ? error
           : error.response,
     });
   }

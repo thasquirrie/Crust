@@ -74,6 +74,9 @@ exports.createForm = catchAsync(async (req, res, next) => {
   }
   const form = await Form.create(req.body);
 
+  console.log({ form });
+  console.log(req.body);
+
   res.status(201).json({
     status: 'success',
     data: {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const industryTypeOptions = [
   'Hospitality',
@@ -27,10 +27,6 @@ const industryTypeOptions = [
   'Membership Groups',
   'Others',
 ];
-
-const classNames = (...classes) => {
-  return classes.filter(Boolean).join('');
-};
 
 const BusinessDetails = ({ displayInConsole }) => {
   const [formationDoc, setFormationDoc] = useState(false);
@@ -77,22 +73,16 @@ const BusinessDetails = ({ displayInConsole }) => {
   };
   console.log(formData);
 
-  const location = useLocation();
   const navigate = useNavigate();
-  console.log({ location });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (location.pathName === '/review-and-submit') {
-      localStorage.setItem('business-details', JSON.stringify(formData));
-    } else {
-      localStorage.setItem('business-details', JSON.stringify(formData));
-      setFormationDoc(true);
-      localStorage.setItem('formationDoc', JSON.stringify(formationDoc));
-      window.setTimeout(() => {
-        navigate('/formation-documents');
-      }, 3000);
-    }
+    localStorage.setItem('business-details', JSON.stringify(formData));
+    setFormationDoc(true);
+    localStorage.setItem('formationDoc', JSON.stringify(formationDoc));
+    window.setTimeout(() => {
+      navigate('/formation-documents');
+    }, 3000);
   };
 
   let business = localStorage.getItem('business-details')
@@ -567,14 +557,12 @@ const BusinessDetails = ({ displayInConsole }) => {
               </div>
             </div>
           </div>
-          <div className='px-4 py-5 bg-gray-50 text-right sm:px-6'>
+          <div className='hidden px-4 py-5 bg-gray-50 text-right sm:px-6'>
             <button
               type='submit'
               className='bg-slate-600 border border-transparent rounded-md shadow-3xl py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 drop-shadow-xl'
             >
-              {location.pathname === '/review-and-submit'
-                ? 'Save'
-                : 'Save & Continue'}
+              Save & Continue
             </button>
           </div>
         </div>

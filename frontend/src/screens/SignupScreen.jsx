@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { signup } from '../actions/userActions';
+import ErrorALert from '../components/ErrorAlert';
+import SuccessAlert from '../components/SuccessAlert';
 
 export default function SignupScreen() {
   const [firstName, setFirstName] = useState('');
@@ -9,9 +11,16 @@ export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [successShow, setSuccessShow] = useState(false);
+  const [errorShow, setErrorShow] = useState(false);
 
   const userSignup = useSelector((state) => state.userSignup);
-  const { loading, success, userInfo } = userSignup;
+  const {
+    loading,
+    error: signupError,
+    success: signupSuccess,
+    userInfo,
+  } = userSignup;
 
   const dispatch = useDispatch();
 
@@ -25,9 +34,22 @@ export default function SignupScreen() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/');
+      window.setTimeout(() => {
+        navigate('/');
+      }, 3000);
     }
-  });
+    if (signupSuccess) {
+      setSuccessShow(true);
+
+      window.setTimeout(() => setSuccessShow(false), 2500);
+    }
+
+    if (signupError) {
+      console.log({ signupError });
+      setErrorShow(true);
+      window.setTimeout(() => setErrorShow(false), 2500);
+    }
+  }, [navigate, signupError, signupSuccess, userInfo]);
 
   return (
     <>
@@ -35,11 +57,8 @@ export default function SignupScreen() {
         <div className='flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 z-10 bg-white'>
           <div className='mx-auto w-full max-w-sm lg:w-96'>
             <div>
-              {/* <img
-                className='h-12 w-auto'
-                src='https://tailwindui.com/img/logos/workflow-mark-slate-600.svg'
-                alt='Workflow'
-              /> */}
+              {successShow && <SuccessAlert action={'Signup'} />}
+              {errorShow && <ErrorALert error={signupError} />}
               <h2 className='mt-6 text-3xl font-extrabold text-gray-900'>
                 Sign in to your account
               </h2>

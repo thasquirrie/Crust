@@ -75,7 +75,7 @@ const formSchema = mongoose.Schema({
     type: String,
     required: [true, 'Average Monthly Turnover is required'],
   },
-  certificationOfIncoporation: {
+  certificateOfIncoporation: {
     type: String,
     required: [true, 'Certification of Incoportation is required'],
   },

@@ -66,7 +66,7 @@ export default function BusinessDetailsScreen() {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate('/signup');
+      navigate('/login');
     }
   }, [navigate, userInfo]);
 
