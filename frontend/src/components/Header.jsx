@@ -260,7 +260,9 @@ import { Fragment } from 'react';
 import { Menu, Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../actions/userActions';
+import { useNavigate } from 'react-router';
 
 const userNavigation = [
   // { name: 'Settings', href: '#' },
@@ -272,10 +274,16 @@ function classNames(...classes) {
 }
 
 const Header = () => {
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const logoutHandler = () => {};
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
 
   return (
     <div>

@@ -35,8 +35,8 @@ export default function BusinessDetailsScreen() {
   }, [navigate, userInfo]);
 
   return (
-    <div className='max-w-[22rem] sm:max-w-xl -mt-24 bg-slate-300 md:max-w-7xl mx-auto rounded-lg'>
-      <div className='max-w-[22rem] sm:max-w-xl md:max-w-7xl mx-auto bg-slate-400 lg:grid lg:grid-cols-12 lg:gap-x-5 py-7 px-5 rounded-lg drop-shadow-2xl shadow-black'>
+    <div className=' sm:max-w-xl -mt-24 bg-slate-300 md:max-w-7xl mx-auto rounded-lg'>
+      <div className=' sm:max-w-xl md:max-w-7xl mx-auto bg-slate-400 lg:grid lg:grid-cols-12 lg:gap-x-5 py-7 px-5 rounded-lg drop-shadow-2xl shadow-black'>
         <div className='col-span-12 space-y-5'>
           <BusinessDetails />
         </div>

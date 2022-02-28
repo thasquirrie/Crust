@@ -129,16 +129,7 @@ export default function LinkBank() {
                     href='#'
                     className='w-full flex items-center justify-center px-8 py-2 border border-transparent text-base font-medium rounded-md text-slate-600 bg-white hover:bg-gray-50 md:py-2 md:text-lg md:px-10'
                     onClick={() => {
-                      setReview(true);
-
-                      localStorage.setItem(
-                        'review-and-submit',
-                        JSON.stringify(true)
-                      );
-                      window.setTimeout(
-                        () => navigate('/review-and-submit'),
-                        3000
-                      );
+                      navigate('/done');
                     }}
                   >
                     Skip
