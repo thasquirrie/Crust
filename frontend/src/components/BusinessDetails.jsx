@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import { ClipboardIcon, XIcon } from '@heroicons/react/outline';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { createForm } from '../actions/formActions';
 
 const industryTypeOptions = [
   'Hospitality',
@@ -32,8 +36,7 @@ const classNames = (...classes) => {
   return classes.filter(Boolean).join('');
 };
 
-const BusinessDetails = ({ displayInConsole }) => {
-  const [formationDoc, setFormationDoc] = useState(false);
+const BusinessDetails = ({}) => {
   const [nameOfCompany, setNameOfCompany] = useState('');
   const [industryType, setIndustryType] = useState('Hospitality');
   const [entityType, setEntityType] = useState('Sole Proprietorship');
@@ -52,7 +55,12 @@ const BusinessDetails = ({ displayInConsole }) => {
   const [lineOfCredit, setLineOfCredit] = useState('');
   const [annualRevenue, setAnnualRevenue] = useState('');
   const [avgMonthlyTurnover, setAvgMonthlyTurnonver] = useState('');
-  const [me, setMe] = useState('');
+  const [certificateOfIncoporation, setCertificateOfIncoporation] = useState(
+    {}
+  );
+  const [cac, setCac] = useState({});
+  const [memart, setMemart] = useState({});
+  const [uploading, setUploading] = useState(false);
 
   const formData = {
     nameOfCompany,
@@ -73,56 +81,82 @@ const BusinessDetails = ({ displayInConsole }) => {
     lineOfCredit,
     annualRevenue,
     avgMonthlyTurnover,
-    me,
+    certificateOfIncoporation,
+    cac,
+    memart,
   };
   console.log(formData);
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  console.log({ location });
+  const dispatch = useDispatch();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (location.pathName === '/review-and-submit') {
-      localStorage.setItem('business-details', JSON.stringify(formData));
-    } else {
-      localStorage.setItem('business-details', JSON.stringify(formData));
-      setFormationDoc(true);
-      localStorage.setItem('formationDoc', JSON.stringify(formationDoc));
-      window.setTimeout(() => {
-        navigate('/formation-documents');
-      }, 3000);
+  const navigate = useNavigate();
+
+  const formCreate = useSelector((state) => state.formCreate);
+  const { loading: createLoading, success: createSuccess } = formCreate;
+
+  console.log({ formCreate });
+
+  const uploadFileHandler = async (e, nameOfField) => {
+    console.log({ nameOfField });
+    console.log(e.target.files);
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append(nameOfField, file);
+    setUploading(true);
+
+    try {
+      const headers = {
+        'Content-Type': 'multipart/form-data',
+      };
+
+      const {
+        data: { path, name },
+      } = await axios({
+        method: 'POST',
+        url: `/api/v1/uploads/${nameOfField}`,
+        data: formData,
+        headers,
+      });
+
+      if (nameOfField === 'certificateOfIncoporation') {
+        setCertificateOfIncoporation({
+          name,
+          path,
+        });
+      } else if (nameOfField === 'cac') {
+        setCac({
+          name,
+          path,
+        });
+      } else if (nameOfField === 'memart') {
+        setMemart({
+          name,
+          path,
+        });
+      }
+
+      console.log({ path });
+
+      setUploading(false);
+
+      // const {}
+    } catch (error) {
+      console.log('Error:', error);
+      setUploading(false);
     }
   };
 
-  let business = localStorage.getItem('business-details')
-    ? JSON.parse(localStorage.getItem('business-details'))
-    : null;
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    dispatch(createForm(formData));
+  };
 
   useEffect(() => {
-    console.log({ formationDoc });
-    if (business) {
-      setNameOfCompany(business.nameOfCompany);
-      setIndustryType(business.industryType);
-      setEntityType(business.entityType);
-      setRCNumber(business.rcNumber);
-      setTin(business.tin);
-      setPhone(business.phone);
-      setCountry(business.country);
-      setEmail(business.email);
-      setWebsite(business.website);
-      setBusinessDetails(business.businessDetails);
-      setAddress(business.address);
-      setCity(business.city);
-      setRegionalState(business.region);
-      setCompanySize(business.companySize);
-      setTypeOfCustomers(business.typeOfCustomers);
-      setLineOfCredit(business.lineOfCredit);
-      setAnnualRevenue(business.annualRevenue);
-      setAvgMonthlyTurnonver(business.avgMonthlyTurnover);
-      setMe(business.me);
+    if (createSuccess) {
+      navigate('/link-bank-details');
     }
-  }, [business, formationDoc]);
+  });
 
   return (
     <div className='space-y-6 sm:px-6 lg:px-0 lg:col-span-8'>
@@ -145,7 +179,7 @@ const BusinessDetails = ({ displayInConsole }) => {
               </p>
             </div>
 
-            <div className='grid grid-cols-5 gap-6'>
+            <div className='grid grid-cols-9 gap-6'>
               <div className='col-span-6 sm:col-span-3'>
                 <label
                   htmlFor='company-name'
@@ -567,14 +601,127 @@ const BusinessDetails = ({ displayInConsole }) => {
               </div>
             </div>
           </div>
+          <div className='bg-white pl-6'>
+            <div className='grid grid-cols-5 gap-12'>
+              <div className='col-span-6 sm:col-span-3'>
+                <label
+                  className='block text-sm font-medium text-gray-700'
+                  htmlFor='incoporation-certificate'
+                >
+                  Certification of Incorportation
+                </label>
+                <div className='relative mt-1 rounded-lg border-dashed border-2 border-gray-300'>
+                  {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
+                  <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
+                </div> */}
+                  {certificateOfIncoporation.name ? (
+                    <div className='flex items-center justify-start w-full pl-3 py-12'>
+                      <ClipboardIcon className='h-8 w-8 text-slate-500 font-thin mr-3' />
+                      <div className='flex items-center justify-between flex-1'>
+                        <p className='text-slate-500 font-bold text-base'>
+                          {certificateOfIncoporation.name}
+                        </p>
+                        <XIcon className='h-6 w-6 text-red-400 mr-3' />
+                      </div>
+                    </div>
+                  ) : (
+                    <label className='block'>
+                      <span className='sr-only'>Choose Certi</span>
+                      <input
+                        type='file'
+                        name='certificateOfIncoporation'
+                        className='pl-3 py-12 w-full text-base font-medium text-center mx-auto flex items-center justify-center text-slate-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-base file:hover:cursor-pointer file:font-semibold file:text-slate-500 file:rounded-lg focus-within:outline-none hover:cursor-pointer '
+                        onChange={(e) => {
+                          console.log(e.target.files[0]);
+                          uploadFileHandler(e, 'certificateOfIncoporation');
+                        }}
+                      />
+                    </label>
+                  )}
+                </div>
+              </div>
+
+              <div className='col-span-6 sm:col-span-3'>
+                <label
+                  className='block text-sm font-medium text-gray-700'
+                  htmlFor='incoporation-certificate'
+                >
+                  CAC 1.1 Form (Certified True Copy)
+                </label>
+                <div className='relative mt-1 rounded-lg border-dashed border-2 border-gray-300'>
+                  {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
+                  <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
+                </div> */}
+                  {cac.name ? (
+                    <div className='flex items-center justify-start w-full pl-3 py-12'>
+                      <ClipboardIcon className='h-8 w-8 text-slate-500 font-thin mr-3' />
+                      <div className='flex items-center justify-between flex-1'>
+                        <p className='text-slate-500 font-bold text-base'>
+                          {cac.name}
+                        </p>
+                        <XIcon className='h-6 w-6 text-red-400 mr-3' />
+                      </div>
+                    </div>
+                  ) : (
+                    <label className='block'>
+                      <span className='sr-only'>Choose profile photo</span>
+                      <input
+                        type='file'
+                        name='cac'
+                        className='pl-3 py-12 w-full text-base font-medium text-center mx-auto flex items-center justify-center text-slate-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-base file:hover:cursor-pointer file:font-semibold file:text-slate-500 file:rounded-lg focus-within:outline-none hover:cursor-pointer '
+                        onChange={(e) => {
+                          uploadFileHandler(e, 'cac');
+                        }}
+                      />
+                    </label>
+                  )}
+                </div>
+              </div>
+
+              <div className='col-span-6 sm:col-span-3'>
+                <label
+                  className='block text-sm font-medium text-gray-700'
+                  htmlFor='incoporation-certificate'
+                >
+                  Memorandum of Articles (MEMART)
+                </label>
+                <div className='relative mt-1 rounded-lg border-dashed border-2 border-gray-300'>
+                  {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
+                  <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
+                </div> */}
+                  {memart.name ? (
+                    <div className='flex items-center justify-start w-full pl-3 py-12'>
+                      <ClipboardIcon className='h-8 w-8 text-slate-500 font-thin mr-3' />
+                      <div className='flex items-center justify-between flex-1'>
+                        <p className='text-slate-500 font-bold text-base'>
+                          {memart.name}
+                        </p>
+                        <XIcon className='h-6 w-6 text-red-400 mr-3' />
+                      </div>
+                    </div>
+                  ) : (
+                    <label className='block'>
+                      <span className='sr-only'>Choose profile photo</span>
+                      <input
+                        type='file'
+                        name='memart'
+                        className='pl-3 py-12 w-full text-base font-medium text-center mx-auto flex items-center justify-center text-slate-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-base file:hover:cursor-pointer file:font-semibold file:text-slate-500 file:rounded-lg focus-within:outline-none hover:cursor-pointer '
+                        onChange={(e) => {
+                          uploadFileHandler(e, 'memart');
+                        }}
+                      />
+                    </label>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
           <div className='px-4 py-5 bg-gray-50 text-right sm:px-6'>
             <button
               type='submit'
               className='bg-slate-600 border border-transparent rounded-md shadow-3xl py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 drop-shadow-xl'
             >
-              {location.pathname === '/review-and-submit'
-                ? 'Save'
-                : 'Save & Continue'}
+              Save and Continue
             </button>
           </div>
         </div>

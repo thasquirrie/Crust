@@ -76,16 +76,34 @@ const formSchema = mongoose.Schema({
     required: [true, 'Average Monthly Turnover is required'],
   },
   certificateOfIncoporation: {
-    type: String,
-    required: [true, 'Certification of Incoportation is required'],
+    name: {
+      type: String,
+      required: [true, 'Certification of Incoportation name is required'],
+    },
+    path: {
+      type: String,
+      required: [true, 'Certification of Incoportation path is required'],
+    },
   },
   cac: {
-    type: String,
-    required: [true, 'CAC 1.1 Form is required'],
+    name: {
+      type: String,
+      required: [true, 'CAC 1.1 Form is required'],
+    },
+    path: {
+      type: String,
+      required: true,
+    },
   },
   memart: {
-    type: String,
-    required: [true, 'Memorandum of Articles (MEMART) is required'],
+    name: {
+      type: String,
+      required: [true, 'Memorandum of Articles (MEMART) is required'],
+    },
+    path: {
+      type: String,
+      required: true,
+    },
   },
 });
 

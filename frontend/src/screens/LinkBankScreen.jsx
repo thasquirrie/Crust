@@ -21,7 +21,6 @@ export default function LinkBankScreen() {
   return (
     <div className='max-w-[22rem] -mt-24 bg-slate-300 md:max-w-7xl mx-auto rounded-lg'>
       <div className='max-w-[22rem] md:max-w-7xl mx-auto bg-slate-400 lg:grid lg:grid-cols-12 lg:gap-x-5 py-7 px-5 rounded-lg drop-shadow-2xl shadow-black'>
-        <Sidebar />
         <LinkBank />
       </div>
     </div>

@@ -22,9 +22,9 @@ export default function LinkBank() {
   }, [review]);
 
   return (
-    <div className='min-h-screen relative bg-gray-50 overflow-hidden lg:col-span-8 '>
+    <div className=' relative bg-gray-50 overflow-hidden lg:col-span-12'>
       <div
-        className='hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full'
+        className='hidden m-auto sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full'
         aria-hidden='true'
       >
         <div className='relative h-full max-w-7xl mx-auto'>
@@ -95,7 +95,7 @@ export default function LinkBank() {
         </div>
       </div>
 
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center my-auto'>
         <div className='relative mt-20 mx-auto max-w-7xl'>
           <img className='mx-auto h-full w-full' src='/lock.svg' alt='' />
         </div>

@@ -16,15 +16,6 @@
 */
 
 import { useState } from 'react';
-import {
-  // CreditCardIcon,
-  // KeyIcon,
-  // UserCircleIcon,
-  // UserGroupIcon,
-  // ViewGridAddIcon,
-  LockClosedIcon,
-  ChevronRightIcon,
-} from '@heroicons/react/outline';
 
 import FormationDocument from '../components/FormationDocuments';
 import Sidebar from '../components/Sidebar';
@@ -59,8 +50,8 @@ export default function FormationDocumentsScreen() {
     console.log(navigation[2]);
   };
   return (
-    <div className='max-w-[22rem] sm:max-w-2xl md:max-w-4xl -mt-24 bg-slate-300 lg:max-w-7xl mx-auto rounded-lg'>
-      <div className='max-w-[22rem] sm:max-w-2xl md:max-w-4xl lg:max-w-7xl mx-auto bg-slate-400 lg:grid lg:grid-cols-12 lg:gap-x-5 py-7 px-5 rounded-lg drop-shadow-2xl shadow-black'>
+    <div className='max-w-[22rem] sm:max-w-xl md:max-w-4xl -mt-24 bg-slate-300 lg:max-w-7xl mx-auto rounded-lg'>
+      <div className='max-w-[22rem] sm:max-w-xl md:max-w-4xl lg:max-w-7xl mx-auto bg-slate-400 lg:grid lg:grid-cols-12 lg:gap-x-5 py-7 px-5 rounded-lg drop-shadow-2xl shadow-black'>
         <Sidebar />
 
         <FormationDocument formationDoc={formationDoc} />

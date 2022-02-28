@@ -258,20 +258,12 @@
 
 import { Fragment } from 'react';
 import { Menu, Popover, Transition } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import { SearchIcon } from '@heroicons/react/solid';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
+
 import { useSelector } from 'react-redux';
 
-const user = {
-  name: 'Chelsea Hagon',
-  email: 'chelseahagon@example.com',
-  role: 'Human Resources Manager',
-  imageUrl:
-    'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
-
 const userNavigation = [
-  { name: 'Settings', href: '#' },
+  // { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
 ];
 
@@ -282,6 +274,8 @@ function classNames(...classes) {
 const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const logoutHandler = () => {};
 
   return (
     <div>
@@ -295,7 +289,7 @@ const Header = () => {
               <div className='relative flex flex-wrap items-center justify-center lg:justify-between'>
                 {/* Logo */}
                 <div className='absolute left-0 py-5 flex-shrink-0 lg:static'>
-                  <a href='#'>
+                  <a href='/'>
                     <span className='sr-only'>Workflow</span>
                     {/* https://tailwindui.com/img/logos/workflow-mark-cyan-200.svg */}
                     <p className='relative text-4xl font-semibold tracking-wide text-white'>
@@ -331,6 +325,7 @@ const Header = () => {
                             <Menu.Item key={item.name}>
                               {({ active }) => (
                                 <a
+                                  onClick={logoutHandler}
                                   href={item.href}
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',

@@ -14,11 +14,11 @@ import FormationDocuments from '../components/FormationDocuments';
 const navigation = [
   { name: 'Business Details', href: '#', current: true },
 
-  {
-    name: 'Formation Documents',
-    href: '#',
-    current: JSON.parse(localStorage.getItem('formationDoc')),
-  },
+  // {
+  //   name: 'Formation Documents',
+  //   href: '#',
+  //   current: JSON.parse(localStorage.getItem('formationDoc')),
+  // },
   {
     name: 'Link Bank Details',
     href: '',

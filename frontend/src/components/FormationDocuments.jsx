@@ -63,15 +63,7 @@ const FormationDocuments = ({ formationDoc }) => {
   return (
     <div className='space-y-6 sm:px-6 lg:px-0 lg:col-span-8'>
       <form onSubmit={submitHandler}>
-        <div
-          // id='formation-documents'
-          className={classNames(
-            formationDoc || JSON.parse(localStorage.getItem('formationDoc'))
-              ? 'block'
-              : 'hidden',
-            'shadow sm:rounded-md sm:overflow-hidden'
-          )}
-        >
+        <div className='shadow sm:rounded-md sm:overflow-hidden'>
           <div className='bg-white py-6 px-4 space-y-6 sm:p-6'>
             <div>
               <h3 className='text-lg leading-6 font-medium text-gray-900'>

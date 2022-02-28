@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Navigate } from 'react-router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BusinessDetails from './screens/BusinessDetailsScreen';
+import BusinessDetails from './screens/FormScreen';
 import FormationDocuments from './screens/FormationDocumentsScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import Footer from './components/Footer';
