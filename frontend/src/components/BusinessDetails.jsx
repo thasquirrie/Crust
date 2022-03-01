@@ -162,10 +162,10 @@ const BusinessDetails = ({}) => {
   const removeFileHandler = (fieldName) => {
     if (fieldName === 'certificateOfIncoporation') {
       setCertificateOfIncoporation({});
-    } else if (fieldName === 'cac' ) {
+    } else if (fieldName === 'cac') {
       setCac({});
     } else if (fieldName === 'memart') {
-      setMemart({})
+      setMemart({});
     }
   };
 
@@ -634,7 +634,12 @@ const BusinessDetails = ({}) => {
                         <p className='text-slate-500 font-bold text-base'>
                           {certificateOfIncoporation.name}
                         </p>
-                        <XIcon className='h-6 w-6 text-red-400 mr-3' />
+                        <XIcon
+                          className='h-6 w-6 text-red-400 mr-3 cursor-pointer'
+                          onClick={() =>
+                            removeFileHandler('certificateOfIncoporation')
+                          }
+                        />
                       </div>
                     </div>
                   ) : (
@@ -672,7 +677,10 @@ const BusinessDetails = ({}) => {
                         <p className='text-slate-500 font-bold text-base'>
                           {cac.name}
                         </p>
-                        <XIcon className='h-6 w-6 text-red-400 mr-3' />
+                        <XIcon
+                          className='h-6 w-6 text-red-400 mr-3 cursor-pointer'
+                          onClick={() => removeFileHandler('cac')}
+                        />
                       </div>
                     </div>
                   ) : (
@@ -709,7 +717,10 @@ const BusinessDetails = ({}) => {
                         <p className='text-slate-500 font-bold text-base'>
                           {memart.name}
                         </p>
-                        <XIcon className='h-6 w-6 text-red-400 mr-3' />
+                        <XIcon
+                          className='h-6 w-6 text-red-400 mr-3 cursor-pointer'
+                          onClick={() => removeFileHandler('memart')}
+                        />
                       </div>
                     </div>
                   ) : (
