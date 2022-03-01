@@ -746,6 +746,10 @@ const BusinessDetails = ({}) => {
               </div>
             </div>
           </div>
+          <div className='my-4'>
+            {createSuccess && <SuccessAlert action={'Save successful'} />}
+            {createError && <ErrorALert error={createError} />}
+          </div>
           <div className='px-4 py-5 bg-gray-50 text-right sm:px-6'>
             {createLoading ? (
               <button
@@ -785,8 +789,6 @@ const BusinessDetails = ({}) => {
             )}
           </div>
         </div>
-        {createSuccess && <SuccessAlert action={'Save successful'} />}
-        {createError && <ErrorALert error={createError} />}
       </form>
     </div>
   );
