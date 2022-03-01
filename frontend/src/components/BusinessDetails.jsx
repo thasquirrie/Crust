@@ -63,7 +63,12 @@ const BusinessDetails = ({}) => {
   );
   const [cac, setCac] = useState({});
   const [memart, setMemart] = useState({});
-  const [uploading, setUploading] = useState(false);
+  const [
+    certificateOfIncoporationUploading,
+    setCertificateOfIncoporationUploading,
+  ] = useState(false);
+  const [cacUploading, setCacUploading] = useState(false);
+  const [memartUploading, setMemartUploading] = useState(false);
 
   const formData = {
     nameOfCompany,
@@ -109,7 +114,14 @@ const BusinessDetails = ({}) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append(nameOfField, file);
-    setUploading(true);
+    // setUploading(true);
+    if (nameOfField === 'certificateOfIncoportaton') {
+      setCertificateOfIncoporation(true);
+    } else if (nameOfField === 'cac') {
+      setCacUploading(true);
+    } else if (nameOfField === 'memart') {
+      setMemartUploading(true);
+    }
 
     try {
       const headers = {
@@ -126,16 +138,19 @@ const BusinessDetails = ({}) => {
       });
 
       if (nameOfField === 'certificateOfIncoporation') {
+        // setCertificateOfIncoporationUploading(true);
         setCertificateOfIncoporation({
           name,
           path,
         });
       } else if (nameOfField === 'cac') {
+        // setCacUploading(true);
         setCac({
           name,
           path,
         });
       } else if (nameOfField === 'memart') {
+        // setMemartUploading(true);
         setMemart({
           name,
           path,
@@ -144,12 +159,18 @@ const BusinessDetails = ({}) => {
 
       console.log({ path });
 
-      setUploading(false);
+      // setUploading(false);
+      setCertificateOfIncoporationUploading(false);
+      setCacUploading(false);
+      setMemartUploading(false);
 
       // const {}
     } catch (error) {
       console.log('Error:', error);
-      setUploading(false);
+      // setUploading(false);
+      setCertificateOfIncoporationUploading(false);
+      setCacUploading(false);
+      setMemartUploading(false);
     }
   };
 
@@ -631,7 +652,7 @@ const BusinessDetails = ({}) => {
                   {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
                   <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
                 </div> */}
-                  {uploading ? (
+                  {certificateOfIncoporationUploading ? (
                     <Uploading />
                   ) : certificateOfIncoporation.name ? (
                     <div className='flex items-center justify-center w-full pl-3 py-12'>
@@ -676,7 +697,10 @@ const BusinessDetails = ({}) => {
                   {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
                   <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
                 </div> */}
-                  {cac.name ? (
+
+                  {cacUploading ? (
+                    <Uploading />
+                  ) : cac.name ? (
                     <div className='flex items-center justify-start w-full pl-3 py-12'>
                       <ClipboardIcon className='h-8 w-8 text-slate-500 font-thin mr-3' />
                       <div className='flex items-center justify-between flex-1'>
@@ -712,11 +736,13 @@ const BusinessDetails = ({}) => {
                 >
                   Memorandum of Articles (MEMART)
                 </label>
-                <div className='relative mt-1 rounded-lg border-dashed border-2 border-gray-300'>
+                <div className='relative mt-1 mb-2 rounded-lg border-dashed border-2 border-gray-300'>
                   {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
                   <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
                 </div> */}
-                  {memart.name ? (
+                  {memartUploading ? (
+                    <Uploading />
+                  ) : memart.name ? (
                     <div className='flex items-center justify-start w-full pl-3 py-12'>
                       <ClipboardIcon className='h-8 w-8 text-slate-500 font-thin mr-3' />
                       <div className='flex items-center justify-between flex-1'>
@@ -777,7 +803,7 @@ const BusinessDetails = ({}) => {
                     d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
                   ></path>
                 </svg>
-                Signing you in
+                Saving...
               </button>
             ) : (
               <button
