@@ -4,6 +4,7 @@ import { ClipboardIcon, XIcon } from '@heroicons/react/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { createForm } from '../actions/formActions';
+import Uploading from './Uploading';
 
 const industryTypeOptions = [
   'Hospitality',
@@ -157,6 +158,16 @@ const BusinessDetails = ({}) => {
       navigate('/link-bank-details');
     }
   });
+
+  const removeFileHandler = (fieldName) => {
+    if (fieldName === 'certificateOfIncoporation') {
+      setCertificateOfIncoporation({});
+    } else if (fieldName === 'cac' ) {
+      setCac({});
+    } else if (fieldName === 'memart') {
+      setMemart({})
+    }
+  };
 
   return (
     <div className='space-y-6 sm:px-6 lg:px-0 lg:col-span-8'>
@@ -614,8 +625,10 @@ const BusinessDetails = ({}) => {
                   {/* <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
                   <ClipboardIcon className='h-8 w-8 text-gray-500 font-thin' />
                 </div> */}
-                  {certificateOfIncoporation.name ? (
-                    <div className='flex items-center justify-start w-full pl-3 py-12'>
+                  {uploading ? (
+                    <Uploading />
+                  ) : certificateOfIncoporation.name ? (
+                    <div className='flex items-center justify-center w-full pl-3 py-12'>
                       <ClipboardIcon className='h-8 w-8 text-slate-500 font-thin mr-3' />
                       <div className='flex items-center justify-between flex-1'>
                         <p className='text-slate-500 font-bold text-base'>
