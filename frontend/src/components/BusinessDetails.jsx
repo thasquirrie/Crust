@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { ClipboardIcon, XIcon } from '@heroicons/react/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -35,11 +35,7 @@ const industryTypeOptions = [
   'Others',
 ];
 
-const classNames = (...classes) => {
-  return classes.filter(Boolean).join('');
-};
-
-const BusinessDetails = ({}) => {
+const BusinessDetails = () => {
   const [nameOfCompany, setNameOfCompany] = useState('');
   const [industryType, setIndustryType] = useState('Hospitality');
   const [entityType, setEntityType] = useState('Sole Proprietorship');
@@ -206,7 +202,7 @@ const BusinessDetails = ({}) => {
           <div className='bg-white py-6 px-4 space-y-6 sm:p-6'>
             <div>
               <h3 className='text-lg leading-6 font-medium text-gray-900'>
-                Business Details
+                Provide Business Details
               </h3>
               <h5 className='mt-1 text-base font-medium text-gray-700'>
                 Tell us about your business
