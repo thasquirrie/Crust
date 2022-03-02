@@ -40,6 +40,9 @@ const formSchema = mongoose.Schema({
   website: {
     type: String,
   },
+  yearOfIncoporation: {
+    type: Date,
+  },
   businessDetails: {
     type: String,
     required: [true, 'Business details is required'],

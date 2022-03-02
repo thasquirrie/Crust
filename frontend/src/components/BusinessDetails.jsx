@@ -46,6 +46,7 @@ const BusinessDetails = () => {
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState('');
   const [businessDetails, setBusinessDetails] = useState('');
+  const [yearOfIncoporation, setYearOfIncoporation] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [region, setRegionalState] = useState('');
@@ -77,6 +78,7 @@ const BusinessDetails = () => {
     email,
     website,
     businessDetails,
+    yearOfIncoporation,
     address,
     city,
     region,
@@ -433,6 +435,24 @@ const BusinessDetails = () => {
                 </p>
               </div>
 
+              <div className='col-span-6 sm:col-span-3'>
+                <label
+                  htmlFor='address'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  <span className='text-red-600 text-base'>*</span> Address
+                </label>
+                <input
+                  type='date'
+                  name='year'
+                  id='year'
+                  autoComplete='year'
+                  value={yearOfIncoporation}
+                  onChange={(e) => setYearOfIncoporation(e.target.value)}
+                  required
+                  className='mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm'
+                />
+              </div>
               <div className='col-span-6 sm:col-span-3'>
                 <label
                   htmlFor='address'
